@@ -2,17 +2,17 @@ require 'rails/generators'
 require 'rails/generators/migration'
 
 module ActsAsNotable
-  class MigrationGenerator < Rails::Generators::Base
+  class InstallGenerator < Rails::Generators::Base
     include Rails::Generators::Migration
 
-    desc 'Generates migration for Note model'
+    desc 'Generates migration and model for Notable'
 
     def self.orm
       Rails::Generators.options[:rails][:orm]
     end
 
     def self.source_root
-      File.join(File.dirname(__FILE__), 'templates', (orm.to_s unless orm.class.eql?(String)))
+      File.join(File.dirname(__FILE__), 'templates')
     end
 
     def self.orm_has_migration?
@@ -29,10 +29,11 @@ module ActsAsNotable
       end
     end
 
-    def create_migration_file
+    def create_migration_and_model_file
       if self.class.orm_has_migration?
-        migration_template 'migration.rb', 'db/migrate/notable_migration.rb'
+        migration_template "#{self.class.orm.to_s unless self.class.orm.class.eql?(String)}/migration.rb", 'db/migrate/notable_migration.rb'
       end
+      template 'note.rb', 'app/models/note.rb'
     end
   end
 end
