@@ -8,11 +8,7 @@ module ActsAsNotable
     end
 
     class_methods do
-      def acts_as_notable(*_args)
-        # class_eval do
-        #   has_many :notable_marks, class_name: 'Note', as: :notable, dependent: :delete_all
-        # end
-      end
+      def acts_as_notable(*_args); end
     end
   end
 end

@@ -6,7 +6,7 @@ module ActsAsNotable
     end
 
     class_methods do
-      def acts_as_noter(*args); end
+      def acts_as_noter(*_args); end
     end
   end
 end
