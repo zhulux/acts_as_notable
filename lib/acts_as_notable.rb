@@ -1,4 +1,5 @@
-require 'acts_as_notable/railtie'
+require 'acts_as_notable/acts_as_noter'
+require 'acts_as_notable/acts_as_notable'
 
-module ActsAsNotable
-end
+ActiveRecord::Base.send(:include, ActsAsNotable::ActsAsNotable)
+ActiveRecord::Base.send(:include, ActsAsNotable::ActsAsNoter)
